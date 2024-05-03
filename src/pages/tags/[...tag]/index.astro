@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from 'astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ListPosts from '@/components/ListPosts.astro'
+import TitlePage from '@/components/TitlePage.astro'
+import { getTags, getPostByTag } from '@/utils/post'
+
+export const getStaticPaths = (async () => {
+	const tags = await getTags()
+
+	return tags.map((tag) => ({
+		params: { tag: tag as string },
+		props: { tag: tag as string }
+	}))
+}) satisfies GetStaticPaths
+
+const { tag } = Astro.props
+const posts = await getPostByTag(tag)
+---
+
+<BaseLayout title={tag}>
+	<TitlePage title={tag} />
+	<ListPosts posts={posts} />
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import TitlePage from '@/components/TitlePage.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ListPosts from '@/components/ListPosts.astro'
+import { getPosts } from '@/utils/post'
+import ListCategories from '@/components/ListCategories.astro'
+import Pagination from '@/components/Pagination.astro'
+
+const MAX_POSTS = 5
+const posts = await getPosts(MAX_POSTS)
+---
+
+<BaseLayout title='Home'>
+	<TitlePage title='Base Blog Title' />
+	<ListCategories />
+
+	<div>
+		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
+		<ListPosts FirstBig={true} posts={posts} />
+	</div>
+</BaseLayout>
+
+<script>
+	// animation library, built on the Web Animations API
+	import { animate } from 'motion'
+	const showAnimations = localStorage.getItem('animations') === 'true'
+
+	if (showAnimations) {
+		animate(
+			'.title',
+			{
+				y: [80, 0],
+				opacity: [0, 1]
+			},
+			{
+				duration: 2.5,
+				opacity: { duration: 3 },
+				offset: [0, 0.55, 0.75]
+			}
+		)
+	}
+</script>

@@ -32,8 +32,8 @@ const { title, description, image, articleDate } = Astro.props
 			<slot />
 			<Footer />
 		</main>
-		<ReactSizeIndicator />
-		<ReactEditBlog />
+		<ReactSizeIndicator client:only="react" />
+		<ReactEditBlog client:only="react" />
 		<style>
 			body {
 				margin-left: calc(100vw - 100%); /* prevent layout shift */

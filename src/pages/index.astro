@@ -4,7 +4,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import ListPosts from '@/components/ListPosts.astro'
 import { getPosts } from '@/utils/post'
 import ListCategories from '@/components/ListCategories.astro'
-import Pagination from '@/components/Pagination.astro'
 
 const MAX_POSTS = 5
 const posts = await getPosts(MAX_POSTS)

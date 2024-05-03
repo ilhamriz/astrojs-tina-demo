@@ -1,5 +1,5 @@
 const ReactEditBlog = () => {
-	return process.env.NODE_ENV === 'development' ? (
+	return process.env.NODE_ENV === 'production' && (
 		<a
 			href={`http://localhost:4321/admin/index.html`}
 			target='_blank'
@@ -7,7 +7,7 @@ const ReactEditBlog = () => {
 		>
 			Edit in CMS
 		</a>
-	) : null
+	)
 }
 
 export default ReactEditBlog
